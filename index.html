@@ -1,16 +1,70 @@
-<!DOCTYPE html>
-<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <meta charset="utf-8">
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="./js/main.js"></script>
+    <link rel="stylesheet" href="css/res.css">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
 </head>
 <body>
-    <h1>Hello World!</h1>
-    We are using node
-    <script>document.write(process.versions.node)</script>,
-    Chrome
-    <script>document.write(process.versions.chrome)</script>,
-    and Electron
-    <script>document.write(process.versions.electron)</script>.
+    <div id="title">
+        <h1>手势列表</h1>
+    </div>
+
+    <div id="demo">
+        <card v-bind:post="posts[0]"></card>
+        <card v-bind:post="posts[1]"></card>
+        <card v-bind:post="posts[2]"></card>
+        <card v-bind:post="posts[3]"></card>
+        <card v-bind:post="posts[4]"></card>
+        <card v-bind:post="posts[5]"></card>
+    </div>
+
+    <script type="text/javascript">
+        //组件相关
+        new Vue({
+            el: '#demo',
+            data: {
+                posts: [{
+                    name: "手势1",
+                    isopen: true,
+                    img_res: "res/default.png"
+
+                }, {
+                        name: "手势2",
+                        isopen: true,
+                        img_res: "res/default.png"
+
+                    }, {
+                        name: "手势3",
+                        isopen: true,
+                        img_res: "res/default.png"
+
+                    }, {
+                        name: "手势4",
+                        isopen: true,
+                        img_res: "res/default.png"
+
+                    }, {
+                        name: "手势5",
+                        isopen: true,
+                        img_res: "res/default.png"
+
+                    }, {
+                        name: "手势6",
+                        isopen: true,
+                        img_res: "res/default.png"
+
+                    }
+                ]
+            }
+        })
+
+    </script>
 </body>
-</html>
+</html >
