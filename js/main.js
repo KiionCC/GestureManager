@@ -1,34 +1,34 @@
-//ÊÖÊÆÁĞ±í
+ï»¿//æ‰‹åŠ¿åˆ—è¡¨
 new Vue({
     el: '#demo',
     data: {
         posts: [{
-            name: "ÊÖÊÆ1",
+            name: "æ‰‹åŠ¿1",
             isopen: true,
             img_res: "res/default.png"
 
         }, {
-            name: "ÊÖÊÆ2",
+            name: "æ‰‹åŠ¿2",
             isopen: true,
             img_res: "res/default.png"
 
         }, {
-            name: "ÊÖÊÆ3",
+            name: "æ‰‹åŠ¿3",
             isopen: true,
             img_res: "res/default.png"
 
         }, {
-            name: "ÊÖÊÆ4",
+            name: "æ‰‹åŠ¿4",
             isopen: true,
             img_res: "res/default.png"
 
         }, {
-            name: "ÊÖÊÆ5",
+            name: "æ‰‹åŠ¿5",
             isopen: true,
             img_res: "res/default.png"
 
         }, {
-            name: "ÊÖÊÆ6",
+            name: "æ‰‹åŠ¿6",
             isopen: true,
             img_res: "res/default.png"
 
