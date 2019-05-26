@@ -18,6 +18,7 @@
             <img :src="img_res">
             <el-button round @click="dialogVisible = true" v-bind:disabled="isopen" class="card_botton">设 置</el-button>
             <el-dialog :title="name" :visible.sync="dialogVisible" width="600px">
+                <img :src="img_res">
                 <p>test</p>
                 
             </el-dialog>
