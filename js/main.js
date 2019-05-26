@@ -36,3 +36,22 @@ new Vue({
         ]
     }
 })
+new Vue({
+    el:'#bang',
+    data:{
+        bins:[{
+            bindname:"手势1"
+        },{
+            bindname:"手势2"
+        },{
+            bindname:"手势3"
+        },{
+            bindname:"手势4"
+        },{
+            bindname:"手势5"
+        },{
+            bindname:"手势6"
+        }
+        ]
+    }
+})

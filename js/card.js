@@ -19,3 +19,19 @@
     </div>
     `
 })
+Vue.component('binding',{
+    props:["bin"],
+    data:function () {
+        return{
+            bindname:this.bin.bindname
+        }
+    },
+    template:`
+    <div>
+        <div class="bind-t" style="margin-left:100px;border-top-style:groove;height: 78px;width: 600px">
+        <p style="float: left;width: 300px;font-size:20px;text-align: center">{{bindname}}</p>
+        <input type="text" style="margin-left:100px;margin-top:26px;height:20px;float:left;width: 100px;display: block">
+        </div>
+    </div>
+    `
+})
