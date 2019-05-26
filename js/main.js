@@ -1,22 +1,38 @@
-Ôªø
-Vue.component('card', {
-    props: ["post"],
-    data: function() {
-        return {
-            img_res: this.post.img_res,
-            name: this.post.name,
-            isopen: this.post.isopen
+// ÷ ∆¡–±Ì
+new Vue({
+    el: '#demo',
+    data: {
+        posts: [{
+            name: " ÷ ∆1",
+            isopen: true,
+            img_res: "res/default.png"
+
+        }, {
+            name: " ÷ ∆2",
+            isopen: true,
+            img_res: "res/default.png"
+
+        }, {
+            name: " ÷ ∆3",
+            isopen: true,
+            img_res: "res/default.png"
+
+        }, {
+            name: " ÷ ∆4",
+            isopen: true,
+            img_res: "res/default.png"
+
+        }, {
+            name: " ÷ ∆5",
+            isopen: true,
+            img_res: "res/default.png"
+
+        }, {
+            name: " ÷ ∆6",
+            isopen: true,
+            img_res: "res/default.png"
+
         }
-    },
-    template: `
-    <div>
-        <el-card class="gesture_box" :body-style="{ padding: '20px' }">
-            <div slot="header" >
-                <span>{{ name }}</span>
-                <el-switch style="float: right; padding: 3px 0" v-model="isopen" active-color="#13ce66" inactive-color="#ff4949"></el-switch>
-            </div>
-            <img :src="img_res">
-        </el-card>
-    </div>
-    `
+        ]
+    }
 })
