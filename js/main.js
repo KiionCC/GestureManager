@@ -1,10 +1,10 @@
 ﻿//手势列表
 new Vue({
-    el: '#demo',
+    el: '#card_list',
     data: {
-        posts: [{
+        gesture_list: [{
             name: "手势1",
-            isopen: true,
+            isopen: false,
             img_res: "res/default.png"
 
         }, {
@@ -32,25 +32,6 @@ new Vue({
             isopen: true,
             img_res: "res/default.png"
 
-        }
-        ]
-    }
-})
-new Vue({
-    el:'#bang',
-    data:{
-        bins:[{
-            bindname:"手势1"
-        },{
-            bindname:"手势2"
-        },{
-            bindname:"手势3"
-        },{
-            bindname:"手势4"
-        },{
-            bindname:"手势5"
-        },{
-            bindname:"手势6"
         }
         ]
     }

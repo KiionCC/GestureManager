@@ -4,45 +4,21 @@
     <meta charset="utf-8">
 
     <script src="./js/jquery.min.js"></script>
-    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
     <script src="./js/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <link rel="stylesheet" href="css/main.css">
-    <script src="./js/card.js"></script>
-    <link rel="stylesheet" href="css/card.css">
+    <script src="./js/components.js"></script>
+    <link rel="stylesheet" href="css/components.css">
 
 </head>
 <body>
-<div class="box">
-    <ul>
-        <li>
-            <input type="radio" name="check" id="active1" checked><label for="active1">手势列表</label>
-            <div id="demo">
-                <card v-bind:post="posts[0]"></card>
-                <card v-bind:post="posts[1]"></card>
-                <card v-bind:post="posts[2]"></card>
-                <card v-bind:post="posts[3]"></card>
-                <card v-bind:post="posts[4]"></card>
-                <card v-bind:post="posts[5]"></card>
-            </div>
-        </li>
-        <li>
-            <input type="radio" name="check" id="active2" checked><label for="active2" >绑定手势</label>
-            <div id="bang">
-                <h3>在对应手势内输入快捷键</h3>
-                <binding v-bind:bin="bins[0]"></binding>
-                <binding v-bind:bin="bins[1]"></binding>
-                <binding v-bind:bin="bins[2]"></binding>
-                <binding v-bind:bin="bins[3]"></binding>
-                <binding v-bind:bin="bins[4]"></binding>
-                <binding v-bind:bin="bins[5]"></binding>
-                <button>确定</button>
-            </div>
-        </li>
-    </ul>
-</div>
-
+    <div id="title">
+        <h1>手势列表</h1>
+    </div>
+    <div id="card_list">
+        <card v-for="post in gesture_list" v-bind:post="post" ></card>
+    </div>
     <script src="./js/main.js"></script>
 </body>
 </html >

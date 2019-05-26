@@ -3,8 +3,14 @@
     margin: 20px;
     float: left;
 }
-
     .card_box img {
         width: 160px;
         height: 160px;
     }
+    .card_box el-dialog {
+        z-index: 1000;
+    }
+
+.card_botton {
+    margin: 10px 0 0 40px;
+}
