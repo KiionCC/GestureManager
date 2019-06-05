@@ -11,6 +11,11 @@
         z-index: 1000;
     }
 
+    .card_box .brief {
+        float: right;
+        width: 360px;
+    }
+
 .card_botton {
     margin: 10px 0 0 40px;
 }

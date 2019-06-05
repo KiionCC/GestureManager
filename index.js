@@ -1,4 +1,5 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, globalShortcut } = require('electron')
+
 
 // 保持对window对象的全局引用，如果不这么做的话，当JavaScript对象被
 // 垃圾回收的时候，window对象将会自动的关闭
@@ -32,7 +33,20 @@ function createWindow() {
 // Electron 会在初始化后并准备
 // 创建浏览器窗口时，调用这个函数。
 // 部分 API 在 ready 事件触发后才能使用。
-app.on('ready', createWindow)
+app.on('ready', () => {
+    createWindow();
+    // 注册全局快捷键
+    const ret = globalShortcut.register('CommandOrControl+Shift+P', () => {
+        console.log('CommandOrControl+Shift+P is pressed')
+        win.webContents.send('ping', 'CommandOrControl+Shift+P is pressed');
+    })    
+    if (!ret) {
+        console.log('registration failed')
+    }
+
+    // 检查快捷键是否注册成功
+    console.log(globalShortcut.isRegistered('CommandOrControl+Shift+P'))
+})
 
 // 当全部窗口关闭时退出。
 app.on('window-all-closed', () => {
@@ -51,5 +65,12 @@ app.on('activate', () => {
     }
 })
 
+app.on('will-quit', () => {
+    // 注销快捷键
+    globalShortcut.unregister('CommandOrControl+Shift+P')
+
+    // 注销所有快捷键
+    globalShortcut.unregisterAll()
+})
 // 在这个文件中，你可以续写应用剩下主进程代码。
 // 也可以拆分成几个文件，然后用 require 导入。
