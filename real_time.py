@@ -12,8 +12,8 @@ import time
 from keras.models import Model, load_model
 import switch_1
 
-# 读取配置文件
-configFile = open('C:/Users/13643/AppData/Roaming/gesturemanager/config.json','r+',encoding='utf-8')
+appdata = os.getenv("APPDATA")
+configFile = open(appdata+'/gesturemanager/config.json','r+',encoding='utf-8')
 configStr = configFile.read()
 # print(configStr)
 import json
