@@ -1,12 +1,12 @@
 import cv2
 import numpy as np
-from  pynput import mouse, keyboard
-from pynput.keyboard import Key
+#from  pynput import mouse, keyboard
+#from pynput.keyboard import Key
 from pykeyboard import PyKeyboard
 
 k = PyKeyboard()
-keyboards= keyboard.Controller()
-mouses = mouse.Controller()
+#keyboards= keyboard.Controller()
+#mouses = mouse.Controller()
 
 keyMap = {
     'ctrl':k.control_key,
