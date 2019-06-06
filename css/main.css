@@ -17,11 +17,18 @@ body {
         color: white;
     }
 
+
 #card_list {
-  position: relative;
-  top: 100px;
-  width: 726px;
-  margin-left:auto;
-  margin-right:auto;
+    position: relative;
+    top: 100px;
+    width: 726px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
+
+#start_button {
+    position: relative;
+    left: 288px;
+    margin: 20px
+}

@@ -18,7 +18,7 @@
     </div>
     <div id="card_list">
         <card v-for="post in gesture_list" v-bind:post="post"></card>
-
+        <el-button type="primary" id="start_button" @click="start">启 动 / 重 启</el-button>
     </div>
     <script src="./js/main.js"></script>
 </body>
