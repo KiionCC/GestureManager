@@ -11,42 +11,42 @@ if (JSON.stringify(conf) === '{}') {
     conf = {
         "gesture_list": [
             {
-                "name": "手势1",
+                "name": "左滑",
                 "gesture": "1",
                 "isopen": false,
-                "img_res": "res/default.png",
+                "img_res": "res/左滑.png",
                 "action": []
             },
             {
-                "name": "手势2",
+                "name": "右滑",
                 "gesture": "2",
                 "isopen": false,
-                "img_res": "res/default.png",
+                "img_res": "res/右滑.png",
                 "action": []
             },
             {
-                "name": "手势3",
+                "name": "前推",
                 "gesture": "3",
                 "isopen": false,
-                "img_res": "res/default.png",
+                "img_res": "res/前推.png",
                 "action": []
             },
             {
-                "name": "手势4",
+                "name": "前滚",
                 "gesture": "4",
                 "isopen": false,
-                "img_res": "res/default.png",
+                "img_res": "res/前滚.png",
                 "action": []
             },
             {
-                "name": "手势5",
+                "name": "后滚",
                 "gesture": "5",
                 "isopen": false,
-                "img_res": "res/default.png",
+                "img_res": "res/后滚.png",
                 "action": []
             },
             {
-                "name": "手势6",
+                "name": "无手势",
                 "gesture": "6",
                 "isopen": false,
                 "img_res": "res/default.png",
