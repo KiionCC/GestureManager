@@ -11,6 +11,17 @@ import cv2
 import time
 from keras.models import Model, load_model
 import switch_1
+
+# 读取配置文件
+configFile = open('C:/Users/GetALife/AppData/Roaming/gesturemanager/config.json','r+',encoding='utf-8')
+configStr = configFile.read()
+# print(configStr)
+import json
+configObj = json.loads(configStr)
+# print(configObj)
+# print(type(configObj))
+configFile.close()
+
 #model1_name = ""
 model1_path = "3DCNN_LRN_300_6_jester"
 model1 = load_model(model1_path)
@@ -87,7 +98,7 @@ while(1):
         # print(classes[int(num[0])])
         input=[]
         real_index = switch_1.index_threshhold(max, int(num[0]))
-        switch_1.controll_PC(real_index)
+        switch_1.controll_PC(real_index,configObj)
         # pre = int(num[0])
     # switch_1.puttext_on(max, real_index, classes, frame, font)
     # cv2.putText(frame, instruction, (450, 50), font, 0.7, (0, 255, 0), 2, 1)

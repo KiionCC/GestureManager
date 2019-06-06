@@ -2,9 +2,24 @@ import cv2
 import numpy as np
 from  pynput import mouse, keyboard
 from pynput.keyboard import Key
+from pykeyboard import PyKeyboard
 
+k = PyKeyboard()
 keyboards= keyboard.Controller()
 mouses = mouse.Controller()
+
+keyMap = {
+    'ctrl':k.control_key,
+    'alt':k.alt_key,
+    'home':k.windows_l_key,
+    'shift':k.shift_key,
+    'space':k.space_key,
+    'up':k.up_key,
+    'down':k.down_key,
+    'left':k.left_key,
+    'right':k.right_key
+}
+
 def index_threshhold(conf, index):
     if index ==1:
         if conf[0] >0.8:
@@ -17,7 +32,7 @@ def index_threshhold(conf, index):
         else:
             return(5)
     elif index == 2 :
-        if conf[0] >0.8:
+        if conf[0] >0.7:
             #print("this is stop")
             return(index)
         else:
@@ -42,32 +57,13 @@ def puttext_on(conf, index, classes,frame, font):
 
 def detect_fist(frame,fistDetect ):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    fist = fistDetect.detectMultiScale(gray, 1.3, 5);
+    fist = fistDetect.detectMultiScale(gray, 1.3, 5)
 
-def controll_PC(index):
-    if index ==0:
-        print('do nothing')
-    elif index ==1:
-        print('do nothing')
-    elif index ==2:
-        print('do nothing')
-    elif index ==3:
-        keyboards.press(Key.ctrl)
-        keyboards.press(Key.cmd)
-        keyboards.press(Key.left)
-        
-        print('swipe window right')
-        print()
-        keyboards.release(Key.ctrl)
-        keyboards.release(Key.cmd)
-        keyboards.release(Key.left)
-    elif index ==4:
-        keyboards.press(Key.ctrl)
-        keyboards.press(Key.cmd)
-        keyboards.press(Key.right)
-        
-        print('swipe window left')
-        print()
-        keyboards.release(Key.ctrl)
-        keyboards.release(Key.cmd)
-        keyboards.release(Key.right)
+def controll_PC(index,configObj):
+    # print(configObj['gesture_list'][index]['isopen'])
+    if configObj['gesture_list'][index]['isopen']:
+        for i in configObj['gesture_list'][index]['action']:
+            k.press_key(keyMap.get(i))
+            print(i)
+        for i in configObj['gesture_list'][index]['action']:
+            k.release_key(keyMap.get(i))
