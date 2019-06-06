@@ -15,5 +15,10 @@ new Vue({
     el: '#card_list',
     data: {
         gesture_list: conf.gesture_list
+    },
+    methods: {
+        start: function () {
+
+        }
     }
 })
