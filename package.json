@@ -24,6 +24,7 @@
   "dependencies": {
     "active-win": "^5.1.0",
     "electron": "^5.0.2",
-    "electron-store": "^3.2.0"
+    "electron-store": "^3.2.0",
+    "ps-tree": "^1.2.0"
   }
 }
