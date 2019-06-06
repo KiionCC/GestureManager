@@ -1,8 +1,10 @@
 ﻿const Store = require('electron-store');
+
 const store = new Store();
 
 
 //获取配置文件
+store.name = "test"
 var conf = store.get()
 //配置文件初始化
 if (JSON.stringify(conf) === '{}') {
@@ -52,7 +54,7 @@ if (JSON.stringify(conf) === '{}') {
             }
         ]
     }
-    store.set("gesture_list", conf.gesture_list)
+    store.set(conf)
 }
 //console.log(conf)
 console.log(store.path)
