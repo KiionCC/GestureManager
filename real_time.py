@@ -2,7 +2,7 @@
 
 
 from  pynput import mouse, keyboard
-from pynput.keyboard import Key
+# from pynput.keyboard import Key
 import os
 import matplotlib
 import matplotlib.pyplot as plt
@@ -105,12 +105,12 @@ while(1):
     # cv2.putText(frame, instruction, (450, 50), font, 0.7, (0, 255, 0), 2, 1)
     if not quietMode:
             cv2.imshow('Original',frame)
-    key = cv2.waitKey(1) & 0xFF
+    # key = cv2.waitKey(1) & 0xFF
     ## Use Esc key to close the program
-    if key == 27:
-        break
-    elif key == ord('q'):
-        quietMode = not quietMode
-        print("Quiet Mode - {}".format(quietMode))
+    # if key == 27:
+    #     break
+    # elif key == ord('q'):
+    #     quietMode = not quietMode
+    #     print("Quiet Mode - {}".format(quietMode))
 cap.release()
 cv2.destroyAllWindows()
