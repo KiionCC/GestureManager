@@ -1,8 +1,8 @@
 #model training 是使用 jester中的5中动作
 
 
-from  pynput import mouse, keyboard
-# from pynput.keyboard import Key
+#from  pynput import mouse, keyboard
+#from pynput.keyboard import Key
 import os
 import matplotlib
 import matplotlib.pyplot as plt
@@ -12,7 +12,6 @@ import time
 from keras.models import Model, load_model
 import switch_1
 
-# 读取配置文件
 appdata = os.getenv("APPDATA")
 configFile = open(appdata+'/gesturemanager/config.json','r+',encoding='utf-8')
 configStr = configFile.read()
