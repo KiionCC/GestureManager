@@ -1,7 +1,9 @@
 import cv2
 import numpy as np
-#from  pynput import mouse, keyboard
-#from pynput.keyboard import Key
+import win32.win32gui as win32gui
+import win32.win32process as win32process
+import win32.win32api as win32api
+import win32.lib.win32con as win32con
 from pykeyboard import PyKeyboard
 
 k = PyKeyboard()
@@ -59,11 +61,23 @@ def detect_fist(frame,fistDetect ):
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     fist = fistDetect.detectMultiScale(gray, 1.3, 5)
 
+# 输入是手势编号，输出为快捷键操作
 def controll_PC(index,configObj):
     # print(configObj['gesture_list'][index]['isopen'])
-    if configObj['gesture_list'][index]['isopen']:
-        for i in configObj['gesture_list'][index]['action']:
+    action = []
+    handle = win32gui.GetForegroundWindow()
+    threadpid, procpid = win32process.GetWindowThreadProcessId(handle)
+    mypyproc = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, False, procpid)
+    activeApp = win32process.GetModuleFileNameEx(mypyproc,0)
+    for app in configObj['program_list']:
+        if app['name'] == '默认设置' and app['gesture_list'][index]['isopen']:
+            action = app['gesture_list'][index]['action']
+        elif activeApp == app['path'] and app['gesture_list'][index]['isopen']:
+            action = app['gesture_list'][index]['action']
+            break
+    for i in action:
             k.press_key(keyMap.get(i))
             print(i)
-        for i in configObj['gesture_list'][index]['action']:
-            k.release_key(keyMap.get(i))
+    for i in action:
+        k.release_key(keyMap.get(i))
+
