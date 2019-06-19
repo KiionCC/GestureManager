@@ -1,21 +1,65 @@
-.card_box {
+
+.gesture_box {
     width: 200px;
     margin: 20px;
     float: left;
 }
-    .card_box img {
+    .gesture_box img {
         width: 160px;
         height: 160px;
     }
-    .card_box el-dialog {
+    .gesture_box el-dialog {
         z-index: 1000;
     }
 
-    .card_box .brief {
+    .gesture_box .brief {
         float: right;
         width: 360px;
     }
 
-.card_botton {
+.gesture_botton {
     margin: 10px 0 0 40px;
+}
+
+.program_box {
+    width: 100%;
+    margin: 10px auto 20px auto;
+
+}
+    .program_box p {
+        margin: 20px;
+        width: 60%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .program_box .path {
+        float: left;
+        position: relative;
+        top: -10px;
+        color: #909399;
+        font-size: 14px;
+    }
+
+    .program_box .delete_button, .program_box .fix_button {
+        margin: 0px 10px 10px 10px;
+        float: right;
+    }
+
+
+.button_box {
+    height: 50px;
+}
+
+.yes_button {
+    float: right;
+    position: relative;
+    right: 20px;
+}
+
+.no_button {
+    float: left;
+    position: relative;
+    left: 20px;
 }

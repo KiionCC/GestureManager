@@ -17,7 +17,7 @@ function createWindow() {
     })
 
     // 加载index.html文件
-    win.loadFile('index.html')
+    win.loadFile('main.html')
 
     // 打开开发者工具
     win.webContents.openDevTools()
@@ -37,16 +37,16 @@ function createWindow() {
 app.on('ready', () => {
     createWindow();
     // 注册全局快捷键
-    const ret = globalShortcut.register('CommandOrControl+Shift+P', () => {
-        console.log('CommandOrControl+Shift+P is pressed')
-        win.webContents.send('ping', 'CommandOrControl+Shift+P is pressed');
+    const ret = globalShortcut.register('CommandOrControl+Shift+P+M', () => {
+        console.log('CommandOrControl+Shift+P+M is pressed')
+        win.webContents.send('ping', 'CommandOrControl+Shift+P+M is pressed');
     })    
     if (!ret) {
         console.log('registration failed')
     }
 
     // 检查快捷键是否注册成功
-    console.log(globalShortcut.isRegistered('CommandOrControl+Shift+P'))
+    console.log(globalShortcut.isRegistered('CommandOrControl+Shift+P+M'))
 })
 
 // 当全部窗口关闭时退出。
@@ -68,7 +68,7 @@ app.on('activate', () => {
 
 app.on('will-quit', () => {
     // 注销快捷键
-    globalShortcut.unregister('CommandOrControl+Shift+P')
+    globalShortcut.unregister('CommandOrControl+Shift+P+M')
 
     // 注销所有快捷键
     globalShortcut.unregisterAll()

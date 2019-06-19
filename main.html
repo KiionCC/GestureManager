@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="./js/components.js"></script>
+    <link rel="stylesheet" href="css/components.css">
+
+</head>
+<body>
+    <div id="title">
+        <h1>应用列表</h1>
+        <el-button type="success" round plain id="start_button" @click="start">启 动 / 重 启</el-button>
+    </div>
+    <div id="card_list">
+        <el-tooltip class="item" content="添加程序" placement="top-start">
+            <el-button circle plain type="success" icon="el-icon-plus" @click="onAdd"></el-button>
+        </el-tooltip>
+        <el-dialog title="添加应用" :visible.sync="dialogVisible" width="600px">
+            <el-form ref="form" :model="form" label-width="80px" labelPosition="left">
+                <el-form-item label="名称">
+                    <el-input v-model="form.name"></el-input>
+                </el-form-item>
+                <el-form-item label="路径">
+                    <el-tooltip class="item" :content="form.path" placement="top-start">
+                        <el-input v-model="form.path" id="path_input"></el-input>
+                    </el-tooltip>
+                    <p class="tips">*将想要绑定的应用界面置于最顶层，使用"Ctrl+Shift+P+M"组合按键即可自动输入应用信息，</p>
+                    <p class="tips">&nbsp;&nbsp;修改名称将不影响正常使用，但修改路径可能导致应用无法被识别，请勿随意修改路径</p>
+                </el-form-item>
+                <el-form-item>
+                    <el-button type="primary" @click="onSubmit">添加</el-button>
+                    <el-button @click="onCancel">取消</el-button>
+                </el-form-item>
+            </el-form>
+        </el-dialog>
+        <el-dialog title="是否使用默认设置作为模板？" :visible.sync="confirmVisible" width="300px">
+            <div class="button_box">
+                <el-button @click="onNo" class="no_button">否</el-button>
+                <el-button type="primary" @click="onYes" class="yes_button">是</el-button>
+            </div>
+        </el-dialog>
+        <template v-for="i in program_list_length">
+            <program :post="i-1"></program>
+        </template>
+    </div>
+    <script src="./js/main.js"></script>
+</body>
+</html >

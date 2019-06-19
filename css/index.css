@@ -17,25 +17,18 @@ body {
         color: white;
     }
 
+    #title .back_button {
+        position: absolute;
+        right: 20px;
+        top:20px;
+    }
+
 
 #card_list {
     position: relative;
     top: 100px;
-    width: 700px;
+    width: 726px;
     margin-left: auto;
     margin-right: auto;
 }
-    #card_list .tips {
-        margin: 5px;
-        padding: 0;
-        height: 11px;
-        font-size: 11px;
-        color: #F56C6C;
-    }
 
-#start_button {
-    display:block;
-    position: absolute;
-    top: 25%;
-    right: 5%;
-}

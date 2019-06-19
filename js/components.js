@@ -4,102 +4,77 @@ const store = new Store();
 
 
 //获取配置文件
-store.name = "test"
+//store.name = "test"
+
+var def_conf = {
+    "path": "",
+    "name": "默认设置",
+    "gesture_list": [
+        {
+            "name": "后滚",
+            "gesture": "5",
+            "isopen": false,
+            "img_res": "res/后滚.png",
+            "action": []
+        }, {
+            "name": "前滚",
+            "gesture": "4",
+            "isopen": false,
+            "img_res": "res/前滚.png",
+            "action": []
+        }, {
+            "name": "前推",
+            "gesture": "3",
+            "isopen": false,
+            "img_res": "res/前推.png",
+            "action": []
+        }, {
+            "name": "右滑",
+            "gesture": "2",
+            "isopen": false,
+            "img_res": "res/右滑.png",
+            "action": []
+        }, {
+            "name": "左滑",
+            "gesture": "1",
+            "isopen": false,
+            "img_res": "res/左滑.png",
+            "action": []
+        }, {
+            "name": "无手势",
+            "gesture": "6",
+            "isopen": false,
+            "img_res": "res/default.png",
+            "action": []
+        }
+    ]
+}
+
 var conf = store.get()
 //配置文件初始化
 if (JSON.stringify(conf) === '{}') {
     conf = {
-        "gesture_list": [
-            {
-                "name": "后滚",
-                "gesture": "5",
-                "isopen": false,
-                "img_res": "res/后滚.png",
-                "action": []
-            },
-            {
-                "name": "前滚",
-                "gesture": "4",
-                "isopen": false,
-                "img_res": "res/前滚.png",
-                "action": []
-            },
-            {
-                "name": "前推",
-                "gesture": "3",
-                "isopen": false,
-                "img_res": "res/前推.png",
-                "action": []
-            },
-            {
-                "name": "右滑",
-                "gesture": "2",
-                "isopen": false,
-                "img_res": "res/右滑.png",
-                "action": []
-            },
-            {
-                "name": "左滑",
-                "gesture": "1",
-                "isopen": false,
-                "img_res": "res/左滑.png",
-                "action": []
-            },
-            {
-                "name": "无手势",
-                "gesture": "6",
-                "isopen": false,
-                "img_res": "res/default.png",
-                "action": []
-            }
-        ]
+        "program_list": [def_conf]
     }
     store.set(conf)
 }
-//console.log(conf)
+
 console.log(store.path)
-/*
-var isfocus = false;
-var Ctrled = false;
-var Entered = false;
-var Shifted = false;
-var Alted = false;
-document.onkeydown = function (event) {
-    event = event || window.event;
 
-    if (event.keyCode == 17 & isfocus & !Ctrled) {
-        document.getElementById('action_input').value = document.getElementById('action_input').value + 'Ctrl'
-        Ctrled = true;
-    }
-    else if (event.keyCode == 13 & isfocus & !Entered) {//Enter
-        document.getElementById('action_input').value = document.getElementById('action_input').value + 'Enter'
-        Entered = true;
-    }
-    else if (event.keyCode == 16 & isfocus & !Shifted) {//Shift
-        document.getElementById('action_input').value = document.getElementById('action_input').value + 'Shift'
-        Shifted = true;
-    }
-    else if (event.keyCode == 18 & isfocus & !Alted) {//Alt
-        document.getElementById('action_input').value = document.getElementById('action_input').value + 'Alt'
-        Alted = true;
-    }
-}
-*/
-
-Vue.component('card', {
+Vue.component('gesture', {
     props: ["post"],
     data: function() {
         return {
-            form: {
-                name: this.post.name,
-                action: this.post.action.join('+')
-            },  
             dialogVisible: false,
-            img_res: this.post.img_res,
-            gesture: this.post.gesture,
-            name: this.post.name,
-            isopen: this.post.isopen,
-            action: this.post.action
+            img_res: conf.program_list[this.post[0]].gesture_list[this.post[1]].img_res,
+            gesture: conf.program_list[this.post[0]].gesture_list[this.post[1]].gesture,
+            name: conf.program_list[this.post[0]].gesture_list[this.post[1]].name,
+            isopen: conf.program_list[this.post[0]].gesture_list[this.post[1]].isopen,
+            action: conf.program_list[this.post[0]].gesture_list[this.post[1]].action,
+            form: {
+                name: this.name,
+                action: conf.program_list[this.post[0]].gesture_list[this.post[1]].action.join('+')
+            }
         }
     },
     watch: {
@@ -108,69 +83,40 @@ Vue.component('card', {
             this.form.action = this.action.join('+');
         },
         name: function () {
-            for (i = 0; i < conf.gesture_list.length; i++) {
-                if (conf.gesture_list[i].gesture === this.gesture) {
-                    conf.gesture_list[i].name = this.name
-                    break;
-                }
-            }
-            store.set("gesture_list", conf.gesture_list)
+            conf.program_list[this.post[0]].gesture_list[this.post[1]].name = this.name;
+            store.set("program_list", conf.program_list);
         },
         isopen: function () {
-            for (i = 0; i < conf.gesture_list.length; i++) {
-                if (conf.gesture_list[i].gesture === this.gesture) {
-                    conf.gesture_list[i].isopen = this.isopen
-                    break;
-                }
-            }
-            store.set("gesture_list", conf.gesture_list)
+            conf.program_list[this.post[0]].gesture_list[this.post[1]].isopen = this.isopen;
+            store.set("program_list", conf.program_list);
         },
         action: function () {
-            for (i = 0; i < conf.gesture_list.length; i++) {
-                if (conf.gesture_list[i].gesture === this.gesture) {
-                    conf.gesture_list[i].action = this.action
-                    break;
-                }
-            }
-            store.set("gesture_list", conf.gesture_list)
+            conf.program_list[this.post[0]].gesture_list[this.post[1]].action = this.action;
+            store.set("program_list", conf.program_list);
         }
     },
     methods: {
         onSubmit: function () {
-            this.dialogVisible = false;
             this.name = this.form.name;
-            //this.action = document.getElementById('action_input').value.split('+');
             this.action = this.form.action.split('+');
+            this.dialogVisible = false;
         },
         onCancel: function () {
             this.dialogVisible = false;
         },
         clear: function () {
             this.form.action = "";
-            /*
-            document.getElementById('action_input').value = '';
-            Ctrled = false;
-            Entered = false;
-            Shifted = false;
-            Alted = false;
-            isfocus = true;
-            */
-        },
-        blur: function () {
-            /*
-            isfocus = false;
-            */
         }
     },
     template: `
     <div>
-        <el-card class="card_box" :body-style="{ padding: '20px' }">
+        <el-card class="gesture_box" :body-style="{ padding: '20px' }">
             <div slot="header" >
                 <span>{{ name }}</span>
                 <el-switch style="float: right; padding: 3px 0" v-model="isopen" inactive-color="#DCDFE6" active-color="#13ce66"></el-switch>
             </div>
             <img :src="img_res">
-            <el-button round @click="dialogVisible = true" v-bind:disabled="!isopen" class="card_botton">设 置</el-button>
+            <el-button round @click="dialogVisible = true" v-bind:disabled="!isopen" class="gesture_botton">设 置</el-button>
             <el-dialog title="手势设置" :visible.sync="dialogVisible" width="600px">
                 <img :src="img_res">
                 <div class="brief">
@@ -179,7 +125,7 @@ Vue.component('card', {
                             <el-input v-model="form.name"></el-input>
                         </el-form-item>
                         <el-form-item label="快捷键">
-                            <el-input v-model="form.action" id="action_input" v-on:focus="clear" v-on:blur="blur"></el-input>
+                            <el-input v-model="form.action" id="action_input" v-on:focus="clear"></el-input>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="onSubmit">修改</el-button>
@@ -192,4 +138,59 @@ Vue.component('card', {
         </el-card>
     </div>
     `
+})
+
+
+Vue.component('program', {
+    props: ["post"],
+    data: function () {
+        return {
+            name: conf.program_list[this.post].name,
+            path: conf.program_list[this.post].path,
+            confirmVisible: false
+        }
+    },
+    methods: {
+        skipToFix: function () {
+            window.location.href = "./index.html?id=" + this.post;
+        },
+        onDelete: function () {
+            this.confirmVisible = true;
+        },
+        onYes: function () {
+            conf.program_list.splice(this.post, 1);
+            store.set("program_list", conf.program_list);
+            this.confirmVisible = false;
+            window.location.href = "./main.html";
+        },
+        onNo: function () {
+            this.confirmVisible = false;
+        }
+    },
+    template: `
+    <div>
+        <el-card class="program_box" :body-style="{ padding: '0px' }" v-if="path != ''">
+            <p>{{ name }} </p>
+            <el-divider></el-divider>
+            <el-tooltip class="item" effect="light" :content="path" placement="top-start">
+                <p class="path">{{ path }}</p>
+            </el-tooltip>
+            <el-button type="primary" round plain class="fix_button" @click="skipToFix">修改</el-button>
+            <el-button type="danger" round plain class="delete_button" @click="onDelete">删除</el-button>
+            <el-dialog title="确认删除该应用下的绑定设置？" :visible.sync="confirmVisible" width="300px">
+                <div class="button_box">
+                    <el-button @click="onNo" class="no_button">否</el-button>
+                    <el-button type="primary" @click="onYes" class="yes_button">是</el-button>
+                </div>
+            </el-dialog>
+        </el-card>
+
+        <el-card class="program_box" :body-style="{ padding: '0px' }" v-else>
+            <p>{{ name }}</p>
+            <el-divider></el-divider>
+            <el-button type="primary" round plain class="fix_button" @click="skipToFix">修改</el-button>
+        </el-card>
+    </div>
+    `
+
 })

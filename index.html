@@ -7,19 +7,23 @@
     <script src="./js/vue.js"></script>
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="./js/components.js"></script>
     <link rel="stylesheet" href="css/components.css">
 
 </head>
 <body>
     <div id="title">
-        <h1>手势列表</h1>
+        <h1>{{name}} - 手势列表</h1>
+        <el-tooltip class="item" effect="light" content="返回主页" placement="top-start">
+            <el-button icon="el-icon-back" type="success" circle plain class="back_button" @click="back"></el-button>
+        </el-tooltip>
     </div>
     <div id="card_list">
-        <card v-for="post in gesture_list" v-bind:post="post"></card>
-        <el-button type="primary" id="start_button" @click="start">启 动 / 重 启</el-button>
+        <template v-for="i in gesture_list">
+            <gesture v-bind:post="i"></gesture>
+        </template>
     </div>
-    <script src="./js/main.js"></script>
+    <script src="./js/index.js"></script>
 </body>
 </html >
