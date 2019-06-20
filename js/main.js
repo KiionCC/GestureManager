@@ -38,10 +38,10 @@ new Vue({
                     pid = -1
                 });
                 workerProcess.stdout.on('data', (data) => {
-                    console.log(data.toString());
+                    console.log('stdout:',data.toString());
                 });
                 workerProcess.stderr.on('data', (data) => {
-                    console.log(data.toString());
+                    console.log('stderr:',data.toString());
                 });
                 pid = workerProcess.pid
                 pypc = workerProcess
