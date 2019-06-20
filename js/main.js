@@ -2,8 +2,9 @@
 const activeWin = require('active-win');
 const child_process = require('child_process');
 
-var pid = -1
-var pypc
+var pid = -1;
+var pypc;
+var workerProcess;
 
 
 //console.log(conf)
@@ -14,6 +15,12 @@ new Vue({
     el: '#start_button',
     methods: {
         start: function () {
+            const loading = this.$loading({
+                lock: true,
+                text: 'Loading',
+                spinner: 'el-icon-loading',
+                background: 'rgba(0, 0, 0, 0.7)'
+            });
             if (pid != -1) {
 
                 console.log('killing python...', pid)
@@ -22,16 +29,18 @@ new Vue({
             }
             //首次开启
             //运行py
-            var workerProcess = child_process.spawn('python', ['real_time.py', '4242'])
-            if (workerProcess != null) {
-                //启动成功
-                console.log('python process start successful', workerProcess.pid)
-            }
+            workerProcess = child_process.spawn('python', ['real_time.py', '4242'])
             workerProcess.on('close', (code, signal) => {
                 //关闭成功
+                console.log(`子进程收到代码 ${code} 而终止`);
                 console.log(`子进程收到信号 ${signal} 而终止`);
                 pid = -1
             });
+            if (workerProcess != null) {
+                //启动成功
+                console.log('python process start successful', workerProcess.pid)
+                loading.close();
+            }
             pid = workerProcess.pid
             pypc = workerProcess
         }
