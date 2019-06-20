@@ -35,7 +35,7 @@ img_rows,img_cols=125, 57
 cap = cv2.VideoCapture(0)
 # cv2.namedWindow('Original', cv2.WINDOW_NORMAL)
 # 告诉node启动成功
-print('python started')
+print('pythonstarted')
 sys.stdout.flush() # 刷新让node收到流
 
 # set rt size as 640x480

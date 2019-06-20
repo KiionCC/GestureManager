@@ -31,14 +31,21 @@ new Vue({
             if (workerProcess != null) {
                 //启动成功
                 console.log('python process start successful', workerProcess.pid)
-                loading.close();
                 workerProcess.on('close', (code, signal) => {
                     //关闭成功
                     console.log(`子进程收到信号 ${signal} 而终止，退出码${code}`);
                     pid = -1
                 });
                 workerProcess.stdout.on('data', (data) => {
-                    console.log('stdout:',data.toString());
+                    var tmp = data.toString();
+                    console.log(data);
+                    if (tmp == "pythonstarted\r\n") {
+                        console.log("yes")
+                        loading.close();
+                    }
+                    else {
+                        console.log("no")
+                    }
                 });
                 workerProcess.stderr.on('data', (data) => {
                     console.log('stderr:',data.toString());

@@ -146,12 +146,13 @@ Vue.component('program', {
         return {
             name: conf.program_list[this.post].name,
             path: conf.program_list[this.post].path,
-            confirmVisible: false
+            confirmVisible: false,
+            fixVisible: false
         }
     },
     methods: {
         skipToFix: function () {
-            window.location.href = "./index.html?id=" + this.post;
+            this.fixVisible = true;
         },
         onDelete: function () {
             this.confirmVisible = true;
@@ -164,6 +165,13 @@ Vue.component('program', {
         },
         onNo: function () {
             this.confirmVisible = false;
+        },
+        onYesFix: function () {
+            this.fixVisible = false;
+            window.location.href = "./index.html?id=" + this.post;
+        },
+        onNoFix: function () {
+            this.fixVisible = false;
         }
     },
     template: `
@@ -182,12 +190,24 @@ Vue.component('program', {
                     <el-button type="primary" @click="onYes" class="yes_button">是</el-button>
                 </div>
             </el-dialog>
+            <el-dialog title="修改将关闭手势识别，是否继续？" :visible.sync="fixVisible" width="320px">
+                <div class="button_box">
+                    <el-button @click="onNoFix" class="no_button">否</el-button>
+                    <el-button type="primary" @click="onYesFix" class="yes_button">是</el-button>
+                </div>
+            </el-dialog>
         </el-card>
 
         <el-card class="program_box" :body-style="{ padding: '0px' }" v-else>
             <p>{{ name }}</p>
             <el-divider></el-divider>
             <el-button type="primary" round plain class="fix_button" @click="skipToFix">修改</el-button>
+            <el-dialog title="修改将关闭手势识别，是否继续？" :visible.sync="fixVisible" width="320px">
+                <div class="button_box">
+                    <el-button @click="onNoFix" class="no_button">否</el-button>
+                    <el-button type="primary" @click="onYesFix" class="yes_button">是</el-button>
+                </div>
+            </el-dialog>
         </el-card>
     </div>
     `
