@@ -11,14 +11,21 @@
     .gesture_box el-dialog {
         z-index: 1000;
     }
+    .gest_img{
+        margin-bottom: 55px;
+    }
 
     .gesture_box .brief {
         float: right;
         width: 360px;
+        height: 800px;
     }
 
-.gesture_botton {
+.set_button {
     margin: 10px 0 0 40px;
+}
+.gesture_button {
+    margin-top: 5px;
 }
 
 .program_box {

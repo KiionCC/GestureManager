@@ -110,9 +110,9 @@ Vue.component('gesture', {
                 <el-switch style="float: right; padding: 3px 0" v-model="isopen" inactive-color="#DCDFE6" active-color="#13ce66"></el-switch>
             </div>
             <img :src="img_res">
-            <el-button round @click="dialogVisible = true" v-bind:disabled="!isopen" class="gesture_botton">设 置</el-button>
+            <el-button round @click="dialogVisible = true" v-bind:disabled="!isopen" class="set_button">设 置</el-button>
             <el-dialog title="手势设置" :visible.sync="dialogVisible" width="600px">
-                <img :src="img_res">
+                <img :src="img_res" class="gest_img">
                 <div class="brief">
                     <el-form ref="form" :model="form" label-width="80px" labelPosition="left">
                         <el-form-item label="名称">
@@ -120,13 +120,15 @@ Vue.component('gesture', {
                         </el-form-item>
                         <el-form-item label="快捷键">
                             <el-input v-model="form.action" id="action_input" v-on:focus="clear"></el-input>
-                            <p class="tips">*可以识别a~z，0~9，f1~f12，</p>
-                            <p class="tips">up，down，right，left，enter，shift，ctrl，alt，win，space，capslock，tab，home，end，insert，delete，backspace，pageup，pagedown，esc，\"\`\"，\"-\"，\"=\"，\"[\"，\"]\"，\",\"，\".\"，\";\"，\"'\"，\"/\"，\"\\"</p>
-                            <p class="tips">*可以识别a~z，0~9，f1~f12，up，down，right，left，enter，shift，ctrl，alt，win，space，capslock，tab，home，end，insert，delete，backspace，pageup，pagedown，esc，\"\`\"，\"-\"，\"=\"，\"[\"，\"]\"，\",\"，\".\"，\";\"，\"'\"，\"/\"，\"\\"</p>
                         </el-form-item>
+                            <p class="tips">*可以识别a~z，0~9，f1~f12，up，down，right，left，esc，</p>
+                            <p class="tips">&nbsp;&nbsp;tab，capslock，shift，ctrl，win，alt，space，enter，home，</p>
+                            <p class="tips">&nbsp;&nbsp;end，insert，delete，backspace，pageup，pagedown，</p>
+                            <p class="tips">&nbsp;&nbsp;\` - = [ ] , . ; ' / \\ </p>
+
                         <el-form-item>
-                            <el-button type="primary" @click="onSubmit">修改</el-button>
-                            <el-button @click="onCancel">取消</el-button>
+                            <el-button type="primary" @click="onSubmit" class="gesture_button">修改</el-button>
+                            <el-button @click="onCancel" class="gesture_button">取消</el-button>
                         </el-form-item>
                     </el-form>
                 </div>
