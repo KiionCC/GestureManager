@@ -22,18 +22,24 @@ new Vue({
             }
             //首次开启
             //运行py
-            var workerProcess = child_process.spawn('python', ['real_time.py', '4242'])
+            var workerProcess = child_process.spawn('python', ['real_time.py'])
             if (workerProcess != null) {
                 //启动成功
                 console.log('python process start successful', workerProcess.pid)
+                workerProcess.on('close', (code, signal) => {
+                    //关闭成功
+                    console.log(`子进程收到信号 ${signal} 而终止，退出码${code}`);
+                    pid = -1
+                });
+                workerProcess.stdout.on('data', (data) => {
+                    console.log(data.toString());
+                });
+                workerProcess.stderr.on('data', (data) => {
+                    console.log(data.toString());
+                });
+                pid = workerProcess.pid
+                pypc = workerProcess
             }
-            workerProcess.on('close', (code, signal) => {
-                //关闭成功
-                console.log(`子进程收到信号 ${signal} 而终止`);
-                pid = -1
-            });
-            pid = workerProcess.pid
-            pypc = workerProcess
         }
     }
 })
