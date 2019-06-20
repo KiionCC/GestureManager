@@ -42,6 +42,10 @@ new Vue({
                     if (tmp == "pythonstarted\r\n") {
                         console.log("yes")
                         loading.close();
+                        this.$message({
+                            message: '手势识别已启动！',
+                            type: 'success'
+                        });
                     }
                     else {
                         console.log("no")
