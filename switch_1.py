@@ -104,7 +104,7 @@ def index_threshhold(conf, index):
         else:
             return(5)
     elif index == 2 :
-        if conf[0] >0.7:
+        if conf[0] >0.9:
             #print("this is stop")
             return(index)
         else:

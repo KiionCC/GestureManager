@@ -11,6 +11,7 @@ import cv2
 import time
 from keras.models import Model, load_model
 import switch_1
+import sys
 
 appdata = os.getenv("APPDATA")
 configFile = open(appdata+'/gesturemanager/config.json','r+',encoding='utf-8')
@@ -33,6 +34,9 @@ quietMode = True
 img_rows,img_cols=125, 57 
 cap = cv2.VideoCapture(0)
 # cv2.namedWindow('Original', cv2.WINDOW_NORMAL)
+# 告诉node启动成功
+print('python started')
+sys.stdout.flush() # 刷新让node收到流
 
 # set rt size as 640x480
 ret = cap.set(3,640)
