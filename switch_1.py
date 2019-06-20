@@ -134,15 +134,19 @@ def detect_fist(frame,fistDetect ):
 # 输入是手势编号，输出为快捷键操作
 def controll_PC(index,configObj):
     # print(configObj['gesture_list'][index]['isopen'])
+    if index == 5:
+        return
     action = []
     handle = win32gui.GetForegroundWindow()
     threadpid, procpid = win32process.GetWindowThreadProcessId(handle)
-    print(win32con.PROCESS_ALL_ACCESS)
-    print(handle)
-    print(threadpid)
-    print(procpid)
-    mypyproc = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, False, procpid)
-    activeApp = win32process.GetModuleFileNameEx(mypyproc,0)
+    # print(procpid) 快速切换句柄可能错误
+    activeApp = 'cannot get path'
+    try:
+        mypyproc = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, False, procpid)
+        activeApp = win32process.GetModuleFileNameEx(mypyproc,0)
+    except Exception:
+        pass
+
     for app in configObj['program_list']:
         if app['name'] == '默认设置' and app['gesture_list'][index]['isopen']:
             action = app['gesture_list'][index]['action']

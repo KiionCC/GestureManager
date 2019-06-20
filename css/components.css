@@ -63,3 +63,12 @@
     position: relative;
     left: 20px;
 }
+
+
+.tips {
+    margin: 5px;
+    padding: 0;
+    height: 11px;
+    font-size: 11px;
+    color: #F56C6C;
+}

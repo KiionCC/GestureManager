@@ -12,39 +12,33 @@ var def_conf = {
     "gesture_list": [
         {
             "name": "后滚",
-            "gesture": "5",
+            "gesture": "0",
             "isopen": false,
             "img_res": "res/后滚.png",
             "action": []
         }, {
             "name": "前滚",
-            "gesture": "4",
+            "gesture": "1",
             "isopen": false,
             "img_res": "res/前滚.png",
             "action": []
         }, {
             "name": "前推",
-            "gesture": "3",
+            "gesture": "2",
             "isopen": false,
             "img_res": "res/前推.png",
             "action": []
         }, {
             "name": "右滑",
-            "gesture": "2",
+            "gesture": "3",
             "isopen": false,
             "img_res": "res/右滑.png",
             "action": []
         }, {
             "name": "左滑",
-            "gesture": "1",
+            "gesture": "4",
             "isopen": false,
             "img_res": "res/左滑.png",
-            "action": []
-        }, {
-            "name": "无手势",
-            "gesture": "6",
-            "isopen": false,
-            "img_res": "res/default.png",
             "action": []
         }
     ]
@@ -126,6 +120,9 @@ Vue.component('gesture', {
                         </el-form-item>
                         <el-form-item label="快捷键">
                             <el-input v-model="form.action" id="action_input" v-on:focus="clear"></el-input>
+                            <p class="tips">*可以识别a~z，0~9，f1~f12，</p>
+                            <p class="tips">up，down，right，left，enter，shift，ctrl，alt，win，space，capslock，tab，home，end，insert，delete，backspace，pageup，pagedown，esc，\"\`\"，\"-\"，\"=\"，\"[\"，\"]\"，\",\"，\".\"，\";\"，\"'\"，\"/\"，\"\\"</p>
+                            <p class="tips">*可以识别a~z，0~9，f1~f12，up，down，right，left，enter，shift，ctrl，alt，win，space，capslock，tab，home，end，insert，delete，backspace，pageup，pagedown，esc，\"\`\"，\"-\"，\"=\"，\"[\"，\"]\"，\",\"，\".\"，\";\"，\"'\"，\"/\"，\"\\"</p>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="primary" @click="onSubmit">修改</el-button>
