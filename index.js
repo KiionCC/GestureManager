@@ -2,12 +2,12 @@ const { app, BrowserWindow, globalShortcut } = require('electron')
 
 //console.log(app.getAppPath())
 
-// ���ֶ�window�����ȫ�����ã��������ô���Ļ�����JavaScript����
-// �������յ�ʱ��window���󽫻��Զ��Ĺر�
+// 保持对window对象的全局引用，如果不这么做的话，当JavaScript对象被
+// 垃圾回收的时候，window对象将会自动的关闭
 let win
 
 function createWindow() {
-    // ������������ڡ�
+    // 创建浏览器窗口。
     win = new BrowserWindow({
         width: 800,
         height: 600,
@@ -16,27 +16,27 @@ function createWindow() {
         }
     })
 
-    // ����index.html�ļ�
+    // 加载index.html文件
     win.loadFile('main.html')
 
-    // �򿪿����߹���
+    // 打开开发者工具
     win.webContents.openDevTools()
 
-    // �� window ���رգ�����¼��ᱻ������
+    // 当 window 被关闭，这个事件会被触发。
     win.on('closed', () => {
-        // ȡ������ window ����������Ӧ��֧�ֶര�ڵĻ���
-        // ͨ����Ѷ�� window ��������һ���������棬
-        // ���ͬʱ����Ӧ��ɾ����Ӧ��Ԫ�ء�
+        // 取消引用 window 对象，如果你的应用支持多窗口的话，
+        // 通常会把多个 window 对象存放在一个数组里面，
+        // 与此同时，你应该删除相应的元素。
         win = null
     })
 }
 
-// Electron ���ڳ�ʼ����׼��
-// �������������ʱ���������������
-// ���� API �� ready �¼����������ʹ�á�
+// Electron 会在初始化后并准备
+// 创建浏览器窗口时，调用这个函数。
+// 部分 API 在 ready 事件触发后才能使用。
 app.on('ready', () => {
     createWindow();
-    // ע��ȫ�ֿ�ݼ�
+    // 注册全局快捷键
     const ret = globalShortcut.register('CommandOrControl+Shift+P+M', () => {
         console.log('CommandOrControl+Shift+P+M is pressed')
         win.webContents.send('ping', 'CommandOrControl+Shift+P+M is pressed');
@@ -45,33 +45,33 @@ app.on('ready', () => {
         console.log('registration failed')
     }
 
-    // ����ݼ��Ƿ�ע��ɹ�
+    // 检查快捷键是否注册成功
     console.log(globalShortcut.isRegistered('CommandOrControl+Shift+P+M'))
 })
 
-// ��ȫ�����ڹر�ʱ�˳���
+// 当全部窗口关闭时退出。
 app.on('window-all-closed', () => {
-    // �� macOS �ϣ������û��� Cmd + Q ȷ�����˳���
-    // ������󲿷�Ӧ�ü���˵����ᱣ�ּ��
+    // 在 macOS 上，除非用户用 Cmd + Q 确定地退出，
+    // 否则绝大部分应用及其菜单栏会保持激活。
     if (process.platform !== 'darwin') {
         app.quit()
     }
 })
 
 app.on('activate', () => {
-    // ��macOS�ϣ�������dockͼ�겢��û���������ڴ�ʱ��
-    // ͨ����Ӧ�ó��������´���һ�����ڡ�
+    // 在macOS上，当单击dock图标并且没有其他窗口打开时，
+    // 通常在应用程序中重新创建一个窗口。
     if (win === null) {
         createWindow()
     }
 })
 
 app.on('will-quit', () => {
-    // ע����ݼ�
+    // 注销快捷键
     globalShortcut.unregister('CommandOrControl+Shift+P+M')
 
-    // ע�����п�ݼ�
+    // 注销所有快捷键
     globalShortcut.unregisterAll()
 })
-// ������ļ��У��������дӦ��ʣ�������̴��롣
-// Ҳ���Բ�ֳɼ����ļ���Ȼ���� require ���롣
+// 在这个文件中，你可以续写应用剩下主进程代码。
+// 也可以拆分成几个文件，然后用 require 导入。
