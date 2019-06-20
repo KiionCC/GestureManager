@@ -137,6 +137,10 @@ def controll_PC(index,configObj):
     action = []
     handle = win32gui.GetForegroundWindow()
     threadpid, procpid = win32process.GetWindowThreadProcessId(handle)
+    print(win32con.PROCESS_ALL_ACCESS)
+    print(handle)
+    print(threadpid)
+    print(procpid)
     mypyproc = win32api.OpenProcess(win32con.PROCESS_ALL_ACCESS, False, procpid)
     activeApp = win32process.GetModuleFileNameEx(mypyproc,0)
     for app in configObj['program_list']:

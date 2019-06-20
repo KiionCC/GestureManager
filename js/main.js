@@ -4,8 +4,6 @@ const child_process = require('child_process');
 
 var pid = -1;
 var pypc;
-var workerProcess;
-
 
 //console.log(conf)
 
@@ -29,26 +27,11 @@ new Vue({
             }
             //首次开启
             //运行py
-<<<<<<< HEAD
-            workerProcess = child_process.spawn('python', ['real_time.py', '4242'])
-            workerProcess.on('close', (code, signal) => {
-                //关闭成功
-                console.log(`子进程收到代码 ${code} 而终止`);
-                console.log(`子进程收到信号 ${signal} 而终止`);
-                pid = -1
-            });
-            if (workerProcess != null) {
-                //启动成功
-                console.log('python process start successful', workerProcess.pid)
-                loading.close();
-            }
-            pid = workerProcess.pid
-            pypc = workerProcess
-=======
             var workerProcess = child_process.spawn('python', ['real_time.py'])
             if (workerProcess != null) {
                 //启动成功
                 console.log('python process start successful', workerProcess.pid)
+                loading.close();
                 workerProcess.on('close', (code, signal) => {
                     //关闭成功
                     console.log(`子进程收到信号 ${signal} 而终止，退出码${code}`);
@@ -63,7 +46,6 @@ new Vue({
                 pid = workerProcess.pid
                 pypc = workerProcess
             }
->>>>>>> 180ba6d4684b020c894242dddcaec733cfd20549
         }
     }
 })
